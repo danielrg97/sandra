@@ -1,0 +1,18 @@
+.userRegistryPage{
+    width: 100vw;
+    background-color: white;
+    position: relative;
+}
+.ui.segment.userRegistrySegment {
+    width: 400px;
+    margin: 30px auto;
+}
+.buttonSubmitLogin {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px !important;
+}
+.inputUserRegistry{
+    width: 100%;
+    padding-top: 10px;
+}
