@@ -2,15 +2,21 @@ import React from 'react';
 import {Segment} from 'semantic-ui-react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import {setUser} from './actions';
-import { redirectTo } from './../../routes/actions';
+import {setUserInSession} from './actions';
 import FormLogin from './form';
 import "./styles.css";
 
 
-const LoginComponent = ({ loginReducer }) => {
-  const submitForm = () => {
-    console.log(loginReducer.get("users"));
+const LoginComponent = ({ loginReducer, history, dispatchUser }) => {
+  const submitForm = (values) => {
+    const result = loginReducer.get("users").filter(user =>user.username === values.email);
+    if(result.length > 0){
+      dispatchUser(result);
+      history.push("/home");
+    }else{
+      alert("intenta de nuevo");
+    }
+    console.log(result.length);
   };
   return (
     <div className="loginPage">
@@ -24,7 +30,7 @@ const LoginComponent = ({ loginReducer }) => {
         <FormLogin submit={submitForm} />
         <span>
           ¿No tienes cuenta?
-          <a onClick={redirectTo("/login/register")}>Registrate</a>
+          <a onClick={()=>history.push("/login/register")}>Registrate</a>
         </span>
       </Segment>
       <footer className="footerCont">
@@ -42,7 +48,7 @@ function mapStateToProps({loginReducer}){
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        dispatchUser: setUser
+        dispatchUser: setUserInSession
     }, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LoginComponent);

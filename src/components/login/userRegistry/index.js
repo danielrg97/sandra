@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import FormUserRegistry from './form';
 import { setUser } from "./../actions";
-import {redirectTo} from './../../../routes/actions';
 import './styles.css';
 
 
-const UserRegistryComponent = ({ dispatchUser, loginReducer }) => {
+const UserRegistryComponent = ({ dispatchUser, loginReducer, history }) => {
   const submitUserRegistry = ( values ) => {
-    console.log(values);
     dispatchUser(values);
+    alert("Hemos creado tu usuario. Por favor inicia sesión.");
+    history.push("/login");
   };
   return (
     <div className="userRegistryPage">
@@ -19,8 +19,8 @@ const UserRegistryComponent = ({ dispatchUser, loginReducer }) => {
         <h1>Llene los campos</h1>
         <FormUserRegistry submit={submitUserRegistry} />
         <span>
-          ¿Ya tienes a cuenta? 
-          <a onClick={redirectTo("/login")}>Inicia sesión</a>
+          ¿Ya tienes a cuenta?
+          <a onClick={()=>history.push("/login")}>Inicia sesión</a>
         </span>
       </Segment>
     </div>
