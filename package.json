@@ -10,7 +10,7 @@
     "axios": "^0.19.2",
     "formik": "^2.1.4",
     "immutable": "^4.0.0-rc.12",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
